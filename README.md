@@ -24,6 +24,12 @@ This project covers...
 
 ## File List
 
+* ### header file
+  * `monty.h`
+
+* ### `./bytecodes`
+  * contains monty, `.m` bytecode files.
+
 ## Authors
 
 * Lisa Leung
