@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	}
 
 	buffer = read_monty(argv[1]);
-	puts(buffer);
+	_puts(buffer);
 
 /**
  * (1) call read file function to read monty bytecode file
