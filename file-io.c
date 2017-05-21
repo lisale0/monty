@@ -1,35 +1,44 @@
 #include "monty.h"
 
 /**
- * read_textfile - reads a text file and prints it to the POSIX stdout
+ * read_monty - reads a text file and prints it to the POSIX stdout
  * @filename: the file
- * @letters: number of letters to print
+ *
  * Return: actual number of letters it could read and print
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+char *read_monty(const char *filename)
 {
 	int fd;
-	ssize_t letters2;
+	unsigned int readretval, charcount, iterations;
 	char *buffer;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);
-	buffer = malloc(sizeof(char) * letters);
+		return (NULL);
+
+	buffer = _calloc(BUFSIZE, sizeof(char));
 	if (buffer == NULL)
-		return (0);
-	if (read(fd, buffer, letters) == -1)
+		return (NULL);
+
+	charcount = 0;
+	iterations = 1;
+	while (TRUE)
+	{
+		readretval = read(fd, (buffer + charcount), BUFSIZE);
+		charcount += readretval;
+
+		if (readretval <= 0 || readretval % BUFSIZE != 0)
+			break;
+
+		iterations++;
+		buffer = _realloc(buffer, charcount, (BUFSIZE * iterations));
+	}
+	if (readretval == -1)
 	{
 		free(buffer);
-		return (0);
+		return (NULL);
 	}
-	letters2 = _strlen(buffer);
-	letters2 = write(STDOUT_FILENO, buffer, letters2);
-	if (letters2 == -1)
-	{
-		free(buffer);
-		return (0);
-	}
-	free(buffer);
-	return (close(fd) == -1 ? -1 : letters2);
+	close(fd);
+
+	return (buffer);
 }

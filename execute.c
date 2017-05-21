@@ -23,5 +23,5 @@ void (*execute_opcode(char *s))(stack_t **stack, unsigned int line_number)
 			return (opcodes[i].f);
 	}
 
-	return (NULL)
+	return (NULL);
 }

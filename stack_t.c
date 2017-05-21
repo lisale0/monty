@@ -10,15 +10,15 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
-	(void)line_number;
 
 	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->n = n;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-	*stack = new_node;
+	if (new_node != NULL)
+	{
+		new_node->n = line_number;
+		new_node->prev = NULL;
+		new_node->next = *stack;
+		*stack = new_node;
+	}
 }
 
 /**
@@ -30,9 +30,9 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *copy = stack;
+	stack_t *copy = *stack;
 	size_t i;
-	(void)line_number
+	(void)line_number;
 
 	for (i = 0; copy; i++, copy = copy->next)
 	{

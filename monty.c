@@ -9,9 +9,19 @@
  */
 int main(int argc, char **argv)
 {
+	char *buffer;
+
+	if (argc != 2)
+	{
+		// failure message
+		return (EXT_FAILURE);
+	}
+
+	buffer = read_monty(argv[1]);
+	puts(buffer);
 
 /**
- * (1) call read file function to read codes
+ * (1) call read file function to read monty bytecode file
  *     -handle errors for no file, etc...
  * (2) add codes to a new stack that we need to create
  *     -handle errors for unknown codes, etc...

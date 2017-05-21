@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <limits.h>
 
 /* ----- macros ----- */
 
@@ -16,6 +17,7 @@
 #define EXT_FAILURE 1
 #define TRUE (1 == 1)
 #define FALSE (!TRUE)
+#define BUFSIZE 1024
 
 /* ----- Structs ----- */
 
@@ -62,12 +64,17 @@ int write_uint(unsigned int n);
 
 /* ----- File I/O ----- */
 
-ssize_t read_textfile(const char *filename, size_t letters);
+char *read_monty(const char *filename);
 
 /* ----- Stack ----- */
 
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+
+/* ----- Mem Alloc ----- */
+
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void *_calloc(unsigned int nmemb, unsigned int size);
 
 /* ----- Execute ------ */
 
