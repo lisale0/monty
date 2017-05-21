@@ -36,7 +36,6 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	for (i = 0; copy; i++, copy = copy->next)
 	{
-		write_uint(copy->n);
-		putchar('\n');
+	        printf("%d\n", copy->n);
 	}
 }

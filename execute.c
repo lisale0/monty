@@ -17,7 +17,7 @@ void (*execute_opcode(char *s))(stack_t **stack, unsigned int line_number)
 
 	while (opcodes[i].opcode)
 	{
-		if (_strncmp(opcodes[i].opcode, s, _strlen(s)))
+		if (strncmp(opcodes[i].opcode, s, strlen(s)))
 			i++;
 		else
 			return (opcodes[i].f);

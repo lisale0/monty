@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <limits.h>
-
+#include <string.h>
 /* ----- macros ----- */
 
 #define TRUE (1 == 1)
@@ -66,8 +66,6 @@ typedef struct inventory_s
 extern inventory_t *inventory;
 inventory_t *inventory;
 
-/* ----- Parse File ----- */
-inputs_t *parse_input(char *buffer);
 
 /* ----- Stack ----- */
 
