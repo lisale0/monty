@@ -56,7 +56,6 @@ typedef struct instruction_s
  */
 typedef struct inputs_s
 {
-        unsigned int linenum;
 	char *opcodes;
 	char *n;
         struct inputs_s *next;
@@ -72,11 +71,12 @@ typedef struct inventory_s
 {
 	stack_t **stack;
 	instruction_t *instruct;
-	inputs_t **input;
+	char **input;
+	unsigned int linenum;
 }inventory_t;
 
 extern inventory_t *inventory;
-
+inventory_t *inventory;
 /* ----- Strings ----- */
 
 int _strlen(char *s);

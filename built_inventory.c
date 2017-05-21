@@ -7,11 +7,16 @@ int allocate_inventory()
 
 int build_inventory()
 {
+	instruction_t opcodes[] = {
+                {"push", _push},
+                {"pall", _pall},
+                {NULL, NULL}
+        };
 	inventory = malloc(sizeof(inventory_t));
 	if (inventory == NULL)
 		return (EXIT_FAILURE);
-	inventory->instruct = malloc(sizeof(instruction_t) * 3);
-	inventory->instruct[0].opcode =  "push";
+	/*inventory->instruct = malloc(sizeof(instruction_t));*/
+	inventory->instruct = opcodes;
 	/*
 	inventory->instruct = {
                 {"push", _push},
