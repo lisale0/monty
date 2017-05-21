@@ -50,18 +50,6 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct inputs_s - linked list representation input commands
- * @line: an input line
- * @next: points to the next element (or command line) of list
- */
-typedef struct inputs_s
-{
-	char *opcodes;
-	char *n;
-        struct inputs_s *next;
-} inputs_t;
-
-/**
  * inventory_s - a struct pointing to all other structs for this project
  * @stack: pointer to stack
  * @instruct: the instruction pointer, function pointers
