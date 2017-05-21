@@ -29,6 +29,14 @@ int main(int argc, char **argv)
 	}
 	while ((retval = getline(&line, &n, file)) != -1)
 	{
+		/*1. parse*/
+		/*2. a function that reads the parse, it reads the first string
+		 * and decide what function to call, if not a valid function
+		 *then errors out
+		 */
+		/*3. check flag for failure, if a function ptr fails, if fails
+		 * break out of the while loop
+		 */
 		printf("%s", line);
 	}
 	return (EXIT_SUCCESS);
