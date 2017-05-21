@@ -56,9 +56,26 @@ typedef struct instruction_s
  */
 typedef struct inputs_s
 {
-        char *line;
+        unsigned int linenum;
+	char *opcodes;
+	char *n;
         struct inputs_s *next;
 } inputs_t;
+
+/**
+ * inventory_s - a struct pointing to all other structs for this project
+ * @stack: pointer to stack
+ * @instruct: the instruction pointer, function pointers
+ * @input: lines of the files parsed into separate elements
+ */
+typedef struct inventory_s
+{
+	stack_t **stack;
+	instruction_t *instruct;
+	inputs_t **input;
+}inventory_t;
+
+extern inventory_t *inventory;
 
 /* ----- Strings ----- */
 
@@ -92,5 +109,9 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 /* ----- Execute ------ */
 
 void (*execute_opcode(char *s))(stack_t **stack, unsigned int line_number);
+
+/* ------Built Inventory -------*/
+int allocate_inventory();
+int build_inventory();
 
 #endif
