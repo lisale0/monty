@@ -9,17 +9,32 @@
  */
 int main(int argc, char **argv)
 {
-	char *buffer;
+	char *line = NULL;
+	char *filename;
+	int fd;
 
 	if (argc != 2)
 	{
 		/* failure message */
 		return (EXIT_FAILURE);
 	}
-
+	/*
 	buffer = read_monty(argv[1]);
-	_puts(buffer);
-
+	*/
+	filename = argv[1];
+        fd = open(filename, O_RDONLY);
+        if (fd == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't open file %s", filename);
+		return (EXIT_FAILURE);
+	}
+	while ((retval = getline(&line, &BUFSIZE, fd)) > 0)
+	{
+		
+	}
+	/*
+	puts(buffer);
+	*/
 /**
  * (1) call read file function to read monty bytecode file
  *     -handle errors for no file, etc...
