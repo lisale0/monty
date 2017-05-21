@@ -42,3 +42,14 @@ char *read_monty(const char *filename)
 
 	return (buffer);
 }
+
+/**
+ * parse_input - parses input string from bytecode .m file
+ * @buffer: buffer string
+ *
+ * Return: head of linked list of input commands
+ */
+inputs_t *parse_input(char *buffer)
+{
+	
+}

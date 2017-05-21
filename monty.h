@@ -13,8 +13,6 @@
 
 /* ----- macros ----- */
 
-#define EXT_SUCCESS 0
-#define EXT_FAILURE 1
 #define TRUE (1 == 1)
 #define FALSE (!TRUE)
 #define BUFSIZE 1024
@@ -50,6 +48,17 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct inputs_s - linked list representation input commands
+ * @line: an input line
+ * @next: points to the next element (or command line) of list
+ */
+typedef struct inputs_s
+{
+        char *line;
+        struct inputs_s *next;
+} inputs_t;
 
 /* ----- Strings ----- */
 

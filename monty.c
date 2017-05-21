@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		// failure message
-		return (EXT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
 	buffer = read_monty(argv[1]);
@@ -30,5 +30,5 @@ int main(int argc, char **argv)
  * (4) call and execute each code one at a time while sorting through list
  * (5) after reading all input codes, terminate successfully
  */
-	return (EXT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
