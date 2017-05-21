@@ -75,6 +75,10 @@ int write_uint(unsigned int n);
 
 char *read_monty(const char *filename);
 
+
+/* ----- Parse File ----- */
+inputs_t *parse_input(char *buffer);
+
 /* ----- Stack ----- */
 
 void _push(stack_t **stack, unsigned int line_number);

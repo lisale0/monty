@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		// failure message
+		/* failure message */
 		return (EXIT_FAILURE);
 	}
 

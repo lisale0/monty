@@ -8,8 +8,8 @@
  */
 char *read_monty(const char *filename)
 {
-	int fd;
-	unsigned int readretval, charcount, iterations;
+	int fd, readretval;
+	unsigned int charcount;
 	char *buffer;
 
 	fd = open(filename, O_RDONLY);
@@ -21,22 +21,24 @@ char *read_monty(const char *filename)
 		return (NULL);
 
 	charcount = 0;
-	iterations = 1;
 	while (TRUE)
 	{
 		readretval = read(fd, (buffer + charcount), BUFSIZE);
 		charcount += readretval;
-
-		if (readretval <= 0 || readretval % BUFSIZE != 0)
+		if (readretval == 0 && charcount == 0)
+		{
+			/* add error message */
+			free(buffer);
+			return (NULL);
+		}
+		else if (readretval == -1)
+		{
+			/* add error message */
+		}
+		else if (readretval != BUFSIZE)
 			break;
-
-		iterations++;
-		buffer = _realloc(buffer, charcount, (BUFSIZE * iterations));
-	}
-	if (readretval == -1)
-	{
-		free(buffer);
-		return (NULL);
+		else
+			buffer = _realloc(buffer, charcount, (charcount + BUFSIZE));
 	}
 	close(fd);
 
@@ -51,5 +53,6 @@ char *read_monty(const char *filename)
  */
 inputs_t *parse_input(char *buffer)
 {
-	
+	(void)buffer;
+	return (NULL);
 }
