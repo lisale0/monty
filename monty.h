@@ -77,21 +77,6 @@ typedef struct inventory_s
 
 extern inventory_t *inventory;
 inventory_t *inventory;
-/* ----- Strings ----- */
-
-int _strlen(char *s);
-int _strncmp(char *s1, char *s2, unsigned int n);
-
-/* ----- Write ----- */
-
-void _puts(char *str);
-int _putchar(char c);
-int write_uint(unsigned int n);
-
-/* ----- File I/O ----- */
-
-char *read_monty(const char *filename);
-
 
 /* ----- Parse File ----- */
 inputs_t *parse_input(char *buffer);
