@@ -58,7 +58,6 @@ typedef struct instruction_s
 typedef struct inventory_s
 {
 	stack_t **stack;
-	instruction_t *instruct;
 	char **input;
 	unsigned int linenum;
 }inventory_t;
@@ -78,10 +77,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
 /* ----- Execute ------ */
-/*
-void (*execute_opcode(void))(stack_t **stack, unsigned int line_number);
-*/
-void execute_opcode();
+
+void (*match_opcode(void))(stack_t **stack, unsigned int line_number);
 int parse_line(char *line);
 
 /* ------Built Inventory -------*/

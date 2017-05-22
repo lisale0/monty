@@ -9,11 +9,11 @@
  */
 int main(int argc, char **argv)
 {
-	char *line = NULL;
-	char *filename;
+	char *line = NULL, *filename;
 	size_t n;
 	int  retval = 1;
 	FILE *file;
+	void (*execute)(stack_t **stack, unsigned int line_number);
 
 	if (argc != 2)
 	{
@@ -28,21 +28,12 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	build_inventory();
-	inventory->stack = malloc(sizeof(stack_t));
 	while ((retval = getline(&line, &n, file)) != -1)
 	{
-		/*1. parse
-		*/
 		parse_line(line);
 		inventory->linenum++;
-		/*2. a function that reads the parse, it reads the first string
-		 * and decide what function to call, if not a valid function
-		 * then errors out
-		 */
-		printf("%p", inventory->stack);
-		printf("%d", inventory->linenum);
-
-		execute_opcode();
+		execute = match_opcode();
+		execute(inventory->stack, inventory->linenum);
 		/* 3. check flag for failure, if a function ptr fails, if fails
 		 * break out of the while loop
 		 */
