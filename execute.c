@@ -25,8 +25,6 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 		else
 			return (instructions[i].f);
 	}
-	dprintf(STDERR_FILENO, "L%u: unknown instruction %s",
-			inventory->linenum, input_opcode);
 	return (NULL);
 }
 

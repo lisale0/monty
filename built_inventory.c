@@ -12,9 +12,10 @@ int build_inventory()
 	inventory->stack = malloc(sizeof(stack_t));
 
 	if (!inventory || !inventory->input || !inventory->stack)
-		return (EXIT_FAILURE);
+		handle_errors("malloc fail");
 
 	inventory->linenum = 0;
+	inventory->line = NULL;
 
 	return (EXIT_SUCCESS);
 }

@@ -28,14 +28,12 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 	char *num = inventory->input[1];
+	(void)line_number;
 
 	if (are_digits() == TRUE)
 		new_node = malloc(sizeof(stack_t));
 	else
-	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer", line_number);
-		exit(EXIT_FAILURE);
-	}
+		handle_errors("push integer");
 
 	if (new_node)
 	{
@@ -77,11 +75,7 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	stack_t *next;
 
 	if (*stack == NULL)
-	{
-		dprintf(STDERR_FILENO,"L%d: can't pop an empty stack\n",
-			line_number);
-		return;
-	}
+		handle_errors("pop empty");
 	if ((*stack)->next != NULL)
 	{
 		next = (*stack)->next;
@@ -98,7 +92,6 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		}
 
 	}
-
 }
 /*
 void _pint(stack_t **stack, __attribute__((unused))unsigned int line_number)
