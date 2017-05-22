@@ -90,7 +90,7 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 
 void (*match_opcode(void))(stack_t **stack, unsigned int line_number);
 int parse_line(char *line);
-int are_digits(void);
+int are_digits(char *num);
 
 /* ----- Finish ----- */
 

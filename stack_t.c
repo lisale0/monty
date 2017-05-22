@@ -2,12 +2,12 @@
 
 /**
  * are_digits - checks if every char in a string is a digit
+ * @num: number to check if all chars are digits
  *
  * Return: TRUE or FALSE
  */
-int are_digits(void)
+int are_digits(char *num)
 {
-	char *num = inventory->input[1];
 	int i;
 
 	for (i = 0; num[i] != '\0'; i++)
@@ -27,10 +27,15 @@ int are_digits(void)
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
-	char *num = inventory->input[1];
+	char *num;
 	(void)line_number;
 
-	if (are_digits() == TRUE)
+	if (inventory->input[1] == NULL)
+		handle_errors("push integer");
+	else
+		num = inventory->input[1];
+
+	if (are_digits(num) == TRUE)
 	{
 		new_node = malloc(sizeof(stack_t));
 		if (new_node == NULL)
