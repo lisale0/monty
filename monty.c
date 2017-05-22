@@ -31,7 +31,11 @@ int main(int argc, char **argv)
 	while ((retval = getline(&line, &n, file)) != -1)
 	{
 		parse_line(line);
+		/*
+		 * removing increment here because pall would increment this and
+		 * and we do not want that
 		inventory->linenum++;
+		*/
 		execute = match_opcode();
 		execute(inventory->stack, inventory->linenum);
 		/* 3. check flag for failure, if a function ptr fails, if fails
