@@ -96,6 +96,7 @@ int are_digits(char *num);
 
 void free_all(void);
 void free_stack(void);
+void free_inputs(void);
 int find_error(char *error);
 void handle_errors(char *error);
 

@@ -13,11 +13,13 @@ int main(int argc, char **argv)
 	size_t n;
 	void (*execute)(stack_t **stack, unsigned int line_number);
 
+	inventory = NULL;
 	if (argc != 2)
 		handle_errors("usage file");
 
 	build_inventory();
 	inventory->filename = argv[1];
+
 	file = fopen(inventory->filename, "r");
 	if (file == NULL)
 		handle_errors("can't open file");

@@ -8,14 +8,30 @@
 void free_stack(void)
 {
 	stack_t *temp;
-	stack_t *head = *(inventory->stack);
+	stack_t *head;
 
-	while (head)
+	if (inventory->stack)
 	{
-		temp = head->next;
-		free(head);
-		head = temp;
+		head = *(inventory->stack);
+
+		while (head)
+		{
+			temp = head->next;
+			free(head);
+			head = temp;
+		}
 	}
+}
+
+/**
+ * free_inputs - frees malloc'd mem for input parser
+ *
+ * Return: void
+ */
+void free_inputs(void)
+{
+	if (inventory->input != NULL)
+		free(inventory->input);
 }
 
 /**
@@ -25,10 +41,12 @@ void free_stack(void)
  */
 void free_all(void)
 {
-	if (inventory)
+	if (inventory != NULL)
 	{
-		free(inventory->line);
+		if (inventory->line != NULL)
+			free(inventory->line);
 		free_stack();
+		free_inputs();
 	}
 }
 
