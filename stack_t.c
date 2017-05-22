@@ -13,7 +13,7 @@ void _push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	int num;
 
 	new_node = malloc(sizeof(stack_t));
-	if (if new_node == NULL)
+	if ( new_node == NULL)
 		return;
 	num = atoi(inventory->input[1]);
 	if (num == 0)
@@ -45,3 +45,24 @@ void _pall(stack_t **stack, unsigned int line_number)
 	        printf("%d\n", copy->n);
 	}
 }
+
+
+void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *next;
+
+	if ((*stack)->next != NULL)
+	{
+		next = (*stack)->next;
+		free(*stack);
+		*stack = next;
+	}
+	else
+	{
+		*stack = NULL;
+		free(*stack);
+	}
+}
+/*
+void _pint(stack_t **stack, __attribute__((unused))unsigned int line_number)
+*/

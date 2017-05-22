@@ -17,6 +17,7 @@ void execute_opcode()
 	instruction_t opcodes[] = {
                 {"push", _push},
 		{"pall", _pall},
+		{"pop", _pop},
 		{NULL, NULL}
         };
 
