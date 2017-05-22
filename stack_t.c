@@ -10,7 +10,7 @@
 void _push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *new_node;
-	int num;
+	(void)line_number;
 
 	new_node = malloc(sizeof(stack_t));
 	if ( new_node == NULL)
