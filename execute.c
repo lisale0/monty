@@ -13,6 +13,7 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 	instruction_t instructions[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pop", _pop},
 		{NULL, NULL}
 	};
 
@@ -42,6 +43,5 @@ int parse_line(char *line)
 
 	inventory->input[0] = strtok(line, delim);
 	inventory->input[1] = strtok(NULL, delim);
-
 	return (EXIT_SUCCESS);
 }
