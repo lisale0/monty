@@ -53,13 +53,17 @@ typedef struct instruction_s
 
 /**
  * inventory_s - a struct pointing to all other structs for this project
+ * @filename: the filename from argv[1]
  * @stack: pointer to stack
- * @instruct: the instruction pointer, function pointers
+ * @line: input line received from getline
  * @input: lines of the files parsed into separate elements
+ * @linenum: the linenumber
  */
 typedef struct inventory_s
 {
+	char *filename;
 	stack_t **stack;
+	char *line;
 	char **input;
 	unsigned int linenum;
 }inventory_t;
@@ -67,12 +71,15 @@ typedef struct inventory_s
 extern inventory_t *inventory;
 inventory_t *inventory;
 
+/* ------Built Inventory -------*/
+
+int build_inventory();
 
 /* ----- Stack ----- */
 
-void _push(stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
 
 /* ----- Mem Alloc ----- */
 
@@ -85,9 +92,11 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number);
 int parse_line(char *line);
 int are_digits(void);
 
-/* ------Built Inventory -------*/
+/* ----- Finish ----- */
 
-int allocate_inventory();
-int build_inventory();
+void free_all(void);
+void free_stack(void);
+int find_error(char *error);
+void handle_errors(char *error);
 
 #endif

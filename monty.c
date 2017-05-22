@@ -9,34 +9,33 @@
  */
 int main(int argc, char **argv)
 {
-	char *line = NULL, *filename;
-	size_t n;
-	int  retval = 1;
 	FILE *file;
+	size_t n;
 	void (*execute)(stack_t **stack, unsigned int line_number);
 
 	if (argc != 2)
-	{
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
-	}
-	filename = argv[1];
-	file = fopen(filename, "r");
-	if (file == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", filename);
-		return (EXIT_FAILURE);
-	}
+		handle_errors("usage file");
+
 	build_inventory();
-	while ((retval = getline(&line, &n, file)) != -1)
+	inventory->filename = argv[1];
+	file = fopen(inventory->filename, "r");
+	if (file == NULL)
+		handle_errors("can't open file");
+
+	while (getline(&inventory->line, &n, file) > 0)
 	{
-		parse_line(line);
+		parse_line(inventory->line);
 		inventory->linenum++;
 		execute = match_opcode();
+		if (execute == NULL)
+			handle_errors("unknown instruction");
+
 		execute(inventory->stack, inventory->linenum);
 		/* 3. check flag for failure, if a function ptr fails, if fails
 		 * break out of the while loop
 		 */
 	}
+	fclose(file);
+	free_all();
 	return (EXIT_SUCCESS);
 }
