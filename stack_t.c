@@ -85,7 +85,7 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 
 	if (*stack == NULL)
 		handle_errors("pop empty");
-	if ((*stack)->next != NULL)
+	else if ((*stack)->next != NULL)
 	{
 		next = (*stack)->next;
 		next->prev = NULL;
@@ -94,12 +94,8 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	}
 	else
 	{
-		if (*stack != NULL)
-		{
-			free(*stack);
-			*stack = NULL;
-		}
-
+		free(*stack);
+		*stack = NULL;
 	}
 }
 /*

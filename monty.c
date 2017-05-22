@@ -31,9 +31,6 @@ int main(int argc, char **argv)
 			handle_errors("unknown instruction");
 
 		execute(inventory->stack, inventory->linenum);
-		/* 3. check flag for failure, if a function ptr fails, if fails
-		 * break out of the while loop
-		 */
 	}
 	fclose(file);
 	free_all();
