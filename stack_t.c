@@ -48,7 +48,12 @@ void _pall(stack_t **stack, unsigned int line_number)
 	}
 }
 
-
+/**
+ * _pop - pop the top element off the stack, i.e. remove head
+ * @stack: head of stack (linked list)
+ * @line_number: line number
+ *
+ */
 void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *next;
