@@ -78,8 +78,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
 /* ----- Execute ------ */
-
-void (*execute_opcode(char *s))(stack_t **stack, unsigned int line_number);
+/*
+void (*execute_opcode(void))(stack_t **stack, unsigned int line_number);
+*/
+void execute_opcode();
+int parse_line(char *line);
 
 /* ------Built Inventory -------*/
 int allocate_inventory();

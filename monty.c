@@ -27,17 +27,25 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", filename);
 		return (EXIT_FAILURE);
 	}
+	build_inventory();
+	inventory->stack = malloc(sizeof(stack_t));
 	while ((retval = getline(&line, &n, file)) != -1)
 	{
-		/*1. parse*/
+		/*1. parse
+		*/
+		parse_line(line);
+		inventory->linenum++;
 		/*2. a function that reads the parse, it reads the first string
 		 * and decide what function to call, if not a valid function
-		 *then errors out
+		 * then errors out
 		 */
-		/*3. check flag for failure, if a function ptr fails, if fails
+		printf("%p", inventory->stack);
+		printf("%d", inventory->linenum);
+
+		execute_opcode();
+		/* 3. check flag for failure, if a function ptr fails, if fails
 		 * break out of the while loop
 		 */
-		printf("%s", line);
 	}
 	return (EXIT_SUCCESS);
 }

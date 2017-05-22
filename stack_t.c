@@ -10,11 +10,10 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
-
 	new_node = malloc(sizeof(stack_t));
 	if (new_node != NULL)
 	{
-		new_node->n = line_number;
+		new_node->n = atoi(inventory->input[1]);
 		new_node->prev = NULL;
 		new_node->next = *stack;
 		*stack = new_node;
