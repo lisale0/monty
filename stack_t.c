@@ -103,7 +103,13 @@ void _pop(stack_t **stack, unsigned int line_number)
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
-	if (stack == NULL || *stack == NULL)
+	if (stack == NULL)
 		return;
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n",
+			inventory->linenum);
+		return;
+	}
         printf("%d\n", (*stack)->n);
 }
