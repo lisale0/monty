@@ -28,10 +28,14 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 	char *num = inventory->input[1];
-	(void)line_number;
 
 	if (are_digits() == TRUE)
 		new_node = malloc(sizeof(stack_t));
+	else
+	{
+		dprintf(STDERR_FILENO, "L%u: usage: push integer", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	if (new_node)
 	{
