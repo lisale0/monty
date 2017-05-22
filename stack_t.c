@@ -44,7 +44,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		new_node->next = *stack;
 		*stack = new_node;
 	}
-	inventory->linenum += 1;
 }
 
 /**
@@ -80,7 +79,7 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	if (*stack == NULL)
 	{
 		dprintf(STDERR_FILENO,"L%d: can't pop an empty stack\n",
-			inventory->linenum);
+			line_number);
 		return;
 	}
 	if ((*stack)->next != NULL)
@@ -89,7 +88,6 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		next->prev = NULL;
 		free(*stack);
 		*stack = next;
-		inventory->linenum -= 1;
 	}
 	else
 	{
@@ -97,7 +95,6 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		{
 			free(*stack);
 			*stack = NULL;
-			inventory->linenum -= 1;
 		}
 
 	}
