@@ -31,7 +31,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (are_digits() == TRUE)
+	{
 		new_node = malloc(sizeof(stack_t));
+		if (new_node == NULL)
+			handle_errors("malloc fail");
+	}
 	else
 		handle_errors("push integer");
 

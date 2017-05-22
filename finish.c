@@ -41,7 +41,7 @@ void free_all(void)
 int find_error(char *error)
 {
 	char *errors[] = {
-		"malloc free", "usage file", "can't open file", "push integer",
+		"malloc fail", "usage file", "can't open file", "push integer",
 		"pop empty", "unknown instruction", NULL
 	};
 	int e = 0;
