@@ -66,7 +66,6 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		{
 			free(*stack);
 			*stack = NULL;
-
 		}
 	}
 }

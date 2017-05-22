@@ -8,8 +8,3 @@ pop
 pall
 pop
 pall
-pop
-pall
-pop
-pop
-pall
