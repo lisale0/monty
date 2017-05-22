@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		if (execute == NULL)
 			handle_errors("unknown instruction");
 
-		execute(inventory->stack, inventory->linenum);
+		execute(&inventory->stack, inventory->linenum);
 	}
 	fclose(file);
 	free_all();

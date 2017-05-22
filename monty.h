@@ -62,7 +62,7 @@ typedef struct instruction_s
 typedef struct inventory_s
 {
 	char *filename;
-	stack_t **stack;
+	stack_t *stack;
 	char *line;
 	char **input;
 	unsigned int linenum;
@@ -96,7 +96,6 @@ int are_digits(char *num);
 
 void free_all(void);
 void free_stack(void);
-void free_inputs(void);
 int find_error(char *error);
 void handle_errors(char *error);
 
