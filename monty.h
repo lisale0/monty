@@ -11,6 +11,8 @@
 #include <fcntl.h>
 #include <limits.h>
 #include <string.h>
+#include <ctype.h>
+
 /* ----- macros ----- */
 
 #define TRUE (1 == 1)
@@ -71,6 +73,7 @@ inventory_t *inventory;
 void _push(stack_t **stack, __attribute__((unused))unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number);
+
 /* ----- Mem Alloc ----- */
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
@@ -80,8 +83,10 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 
 void (*match_opcode(void))(stack_t **stack, unsigned int line_number);
 int parse_line(char *line);
+int are_digits(void);
 
 /* ------Built Inventory -------*/
+
 int allocate_inventory();
 int build_inventory();
 

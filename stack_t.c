@@ -1,27 +1,41 @@
 # include "monty.h"
 
 /**
+ * are_digits - checks if every char in a string is a digit
+ *
+ * Return: TRUE or FALSE
+ */
+int are_digits(void)
+{
+	char *num = inventory->input[1];
+	int i;
+
+	for (i = 0; num[i] != '\0'; i++)
+		if (isdigit(num[i]) == FALSE)
+			return (FALSE);
+
+	return (TRUE);
+}
+
+/**
  * _push - adds a new node at the beginning of a stack_t list
  * @stack: head of stack (linked list)
  * @line_number: line number
  *
  * Return: void
  */
-void _push(stack_t **stack, __attribute__((unused))unsigned int line_number)
+void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
-	int num;
+	stack_t *new_node = NULL;
+	char *num = inventory->input[1];
 	(void)line_number;
 
-	new_node = malloc(sizeof(stack_t));
-	if ( new_node == NULL)
-		return;
-	num = atoi(inventory->input[1]);
-	if (num == 0)
-		return;
-	if (new_node != NULL)
+	if (are_digits() == TRUE)
+		new_node = malloc(sizeof(stack_t));
+
+	if (new_node)
 	{
-		new_node->n = num;
+		new_node->n = atoi(num);
 		new_node->prev = NULL;
 		new_node->next = *stack;
 		*stack = new_node;
