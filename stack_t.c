@@ -7,13 +7,20 @@
  *
  * Return: void
  */
-void _push(stack_t **stack, unsigned int line_number)
+void _push(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	stack_t *new_node;
+	int num;
+
 	new_node = malloc(sizeof(stack_t));
+	if (if new_node == NULL)
+		return;
+	num = atoi(inventory->input[1]);
+	if (num == 0)
+		return;
 	if (new_node != NULL)
 	{
-		new_node->n = atoi(inventory->input[1]);
+		new_node->n = num;
 		new_node->prev = NULL;
 		new_node->next = *stack;
 		*stack = new_node;

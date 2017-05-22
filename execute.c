@@ -50,7 +50,5 @@ int parse_line(char *line)
 	char *delim = " \t\n\r";
 	inventory->input[0] = strtok(line, delim);
 	inventory->input[1] = strtok(NULL, delim);
-	/*
-	inventory->input = inputs;
-	*/
+	return (EXIT_SUCCESS);
 }

@@ -69,7 +69,7 @@ inventory_t *inventory;
 
 /* ----- Stack ----- */
 
-void _push(stack_t **stack, unsigned int line_number);
+void _push(stack_t **stack, __attribute__((unused))unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 
 /* ----- Mem Alloc ----- */

@@ -39,9 +39,6 @@ int main(int argc, char **argv)
 		 * and decide what function to call, if not a valid function
 		 * then errors out
 		 */
-		printf("%p", inventory->stack);
-		printf("%d", inventory->linenum);
-
 		execute_opcode();
 		/* 3. check flag for failure, if a function ptr fails, if fails
 		 * break out of the while loop
