@@ -31,7 +31,9 @@ void free_stack(void)
 void free_inputs(void)
 {
 	if (inventory->input != NULL)
+	{
 		free(inventory->input);
+	}
 }
 
 /**
@@ -47,6 +49,7 @@ void free_all(void)
 			free(inventory->line);
 		free_stack();
 		free_inputs();
+		free(inventory);
 	}
 }
 
