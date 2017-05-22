@@ -1,0 +1,9 @@
+language: c
+
+dist: trusty
+
+sudo: false
+
+compiler: gcc
+
+script: gcc -Wall -Werror -Wextra -pedantic *.c -o monty
