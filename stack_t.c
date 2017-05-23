@@ -1,23 +1,6 @@
 # include "monty.h"
 
 /**
- * are_digits - checks if every char in a string is a digit
- * @num: number to check if all chars are digits
- *
- * Return: TRUE or FALSE
- */
-int are_digits(char *num)
-{
-	int i;
-
-	for (i = 0; num[i] != '\0'; i++)
-		if (isdigit(num[i]) == FALSE)
-			return (FALSE);
-
-	return (TRUE);
-}
-
-/**
  * _push - adds a new node at the beginning of a stack_t list
  * @stack: head of stack (linked list)
  * @line_number: line number
@@ -74,6 +57,22 @@ void _pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
+ * _pint - prints the number of the head node
+ * @stack: the stack
+ * @line_number: line number
+ * Return: None
+ */
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+
+	if (!stack || !*stack)
+		handle_errors("can't pint");
+
+    printf("%d\n", (*stack)->n);
+}
+
+/**
  * _pop - pop the top element off the stack, i.e. remove head
  * @stack: head of stack (linked list)
  * @line_number: line number
@@ -85,7 +84,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (*stack == NULL)
-		handle_errors("pop empty");
+		handle_errors("can't pop");
 	else if ((*stack)->next != NULL)
 	{
 		next = (*stack)->next;
@@ -99,22 +98,22 @@ void _pop(stack_t **stack, unsigned int line_number)
 		*stack = NULL;
 	}
 }
+
 /**
- * _pint - prints the number of the head node
+ * _swap - swap the top two elements
  * @stack: the stack
- * @line_number: line number
- * Return: None
+ * @line_number: the line number
+ * Return: none
  */
-void _pint(stack_t **stack, unsigned int line_number)
+void _swap(stack_t **stack, unsigned int line_number)
 {
+	int temp;
 	(void)line_number;
-	if (stack == NULL)
-		return;
-	if (*stack == NULL)
-	{
-		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n",
-			inventory->linenum);
-		return;
-	}
-        printf("%d\n", (*stack)->n);
+
+	if (!stack || !*stack || !(*stack)->next)
+		handle_errors("can't swap");
+
+	temp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = temp;
 }

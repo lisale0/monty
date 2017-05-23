@@ -49,14 +49,17 @@ void free_all(void)
  */
 int find_error(char *error)
 {
-	char *errors[] = {
-		"malloc fail", "usage file", "can't open file", "push integer",
-		"pop empty", "unknown instruction", NULL
+	char *flags[] = {
+		"malloc fail", "usage file",
+		"can't open file", "unknown instruction",
+		"push integer", "can't pint", "can't pop", "can't swap",
+		"can't add", "can't sub", "can't div", "div by 0", "can't mul",
+		NULL
 	};
 	int e = 0;
 
-	while (errors[e] != NULL)
-		if (strcmp(error, errors[e]) != 0)
+	while (flags[e] != NULL)
+		if (strcmp(error, flags[e]) != 0)
 			e++;
 		else
 			break;
@@ -72,25 +75,30 @@ void handle_errors(char *error)
 {
 	int e;
 	unsigned int n;
+	char *errors[] = {
+		"Error: malloc failed\n", "USAGE: monty file\n",
+		NULL, NULL,
+		"usage: push integer\n", "can't pint, stack empty\n",
+		"can't pop an empty stack\n", "can't swap, stack too short\n",
+		"can't add, stack too short\n", "can't sub, stack too short\n",
+		"can't div, stack too short\n", "division by zero\n",
+		"can't mul, stack too short\n"
+	};
 
 	e = find_error(error);
 	if (inventory)
 		n = inventory->linenum;
 
-	if (e == 0)
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-	else if (e == 1)
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+	if (e <= 1)
+		dprintf(STDERR_FILENO, "%s", errors[e]);
 	else if (e == 2)
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n",
 				inventory->filename);
 	else if (e == 3)
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", n);
-	else if (e == 4)
-		dprintf(STDERR_FILENO,"L%u: can't pop an empty stack\n", n);
-	else if (e == 5)
 		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", n,
 				inventory->input[0]);
+	else if (e >= 4)
+		dprintf(STDERR_FILENO, "L%u: %s", n, errors[e]);
 
 	free_all();
 	exit(EXIT_FAILURE);
