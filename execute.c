@@ -12,7 +12,8 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 	char *input_opcode, *opcode;
 	instruction_t instructions[] = {
 		{"push", _push}, {"pall", _pall},
-		{"pop", _pop}, {"pint", _pint}, {NULL, NULL}
+		{"pop", _pop}, {"pint", _pint}, {"swap", _swap},
+		{NULL, NULL}
 	};
 
 	input_opcode = inventory->input[0];

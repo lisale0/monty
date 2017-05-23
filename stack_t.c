@@ -99,7 +99,12 @@ void _pop(stack_t **stack, unsigned int line_number)
 		*stack = NULL;
 	}
 }
-
+/**
+ * _pint - prints the number of the head node
+ * @stack: the stack
+ * @line_number: line number
+ * Return: None
+ */
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
