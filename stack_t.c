@@ -79,9 +79,10 @@ void _pall(stack_t **stack, unsigned int line_number)
  * @line_number: line number
  *
  */
-void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
+void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *next;
+	(void)line_number;
 
 	if (*stack == NULL)
 		handle_errors("pop empty");
@@ -98,6 +99,22 @@ void _pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 		*stack = NULL;
 	}
 }
-/*
-void _pint(stack_t **stack, __attribute__((unused))unsigned int line_number)
-*/
+/**
+ * _pint - prints the number of the head node
+ * @stack: the stack
+ * @line_number: line number
+ * Return: None
+ */
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+	if (stack == NULL)
+		return;
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n",
+			inventory->linenum);
+		return;
+	}
+        printf("%d\n", (*stack)->n);
+}
