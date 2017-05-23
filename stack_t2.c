@@ -10,22 +10,30 @@ void _add(stack_t **stack, unsigned int line_number)
 {
 	int sum;
 
-/*	int numlen;
-	char *num_str; */
-
 	if (*stack == NULL || (*stack)->next == NULL)
 		handle_errors("can't add");
 
 	sum = (*stack)->n + (*stack)->next->n;
-/*	numlen = num_len(sum);
+	_pop(stack, line_number);
+	(*stack)->n = sum;
+
+/* We can simply reassign the top of the stack,
+  it is just an integer, and so if is not necessary
+  to pop the top and then readd it through the _push
+  _method.  Your old code is still here though in case
+  You want to still use it.  It seems like a lot of
+  work though and risking more memory leaks */
+
+/*	int numlen;
+	char *num_str;
+
+	numlen = num_len(sum);
 	num_str = malloc(numlen * sizeof(char));
 
 	if (num_str == NULL)
-	handle_errors("malloc fail"); */
-
+	handle_errors("malloc fail");
 	_pop(stack, line_number);
-	(*stack)->n = sum;
-/*	_pop(stack, line_number);
+	_pop(stack, line_number);
 	itos(num_str, sum);
 	inventory->input[1] = num_str;
 	_push(stack, line_number);
