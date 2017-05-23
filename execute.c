@@ -12,7 +12,9 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 	char *input_opcode, *opcode;
 	instruction_t instructions[] = {
 		{"push", _push}, {"pall", _pall},
-		{"pop", _pop}, {"pint", _pint}, {"swap", _swap},
+		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
+		{"add", _add}, {"nop", _nop}, {"sub", _sub},
+		{"div", _div}, {"mul", _mul},
 		{NULL, NULL}
 	};
 
