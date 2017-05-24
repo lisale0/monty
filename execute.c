@@ -14,11 +14,14 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 		{"push", _push}, {"pall", _pall},
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop}, {"sub", _sub},
-		{"div", _div}, {"mul", _mul},
+		{"div", _div}, {"mul", _mul}, {"mod", _mod},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 
 	input_opcode = inventory->input[0];
+	if (input_opcode[0] == '#')
+		return (_nop);
 	while ((opcode = instructions[i].opcode))
 	{
 		if (strncmp(opcode, input_opcode, strlen(input_opcode)))

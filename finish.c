@@ -54,6 +54,7 @@ int find_error(char *error)
 		"can't open file", "unknown instruction",
 		"push integer", "can't pint", "can't pop", "can't swap",
 		"can't add", "can't sub", "can't div", "div by 0", "can't mul",
+		"can't mod", "pchar out of range", "pchar stack empty",
 		NULL
 	};
 	int e = 0;
@@ -82,7 +83,8 @@ void handle_errors(char *error)
 		"can't pop an empty stack\n", "can't swap, stack too short\n",
 		"can't add, stack too short\n", "can't sub, stack too short\n",
 		"can't div, stack too short\n", "division by zero\n",
-		"can't mul, stack too short\n"
+		"can't mul, stack too short\n", "can't mod, stack too short\n",
+		"can't pchar, value out of range\n", "can't pchar, stack empty\n"
 	};
 
 	e = find_error(error);
