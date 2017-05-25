@@ -77,7 +77,7 @@ typedef struct instruction_s
  * @line: input line received from getline
  * @input: lines of the files parsed into separate elements
  * @linenum: the linenumber
- * @error: 0 if no error, else the error number
+ * @file: the input file
  */
 typedef struct inventory_s
 {
@@ -86,9 +86,10 @@ typedef struct inventory_s
 	char *line;
 	char **input;
 	unsigned int linenum;
-	int error;
 	FILE *file;
 }inventory_t;
+
+/* ----- glbal ----- */
 
 extern inventory_t *inventory;
 inventory_t *inventory;

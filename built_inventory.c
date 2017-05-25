@@ -21,7 +21,6 @@ int build_inventory()
 	inventory->stack = NULL;
 	inventory->line = NULL;
 	inventory->linenum = 0;
-	inventory->error = 0;
 
 	return (EXIT_SUCCESS);
 }
