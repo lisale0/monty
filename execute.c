@@ -29,7 +29,8 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 		else
 			return (instructions[i].f);
 	}
-	return (NULL);
+	inventory->error = ERROR_UNKNOWN;
+	return (_nop);
 }
 
 /**

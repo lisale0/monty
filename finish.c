@@ -42,39 +42,12 @@ void free_all(void)
 }
 
 /**
- * find_error - finds error message
- * @error: the error message
- *
- * Return: int of error message
- */
-int find_error(char *error)
-{
-	char *flags[] = {
-		"malloc fail", "usage file",
-		"can't open file", "unknown instruction",
-		"push integer", "can't pint", "can't pop", "can't swap",
-		"can't add", "can't sub", "can't div", "div by 0", "can't mul",
-		"can't mod", "pchar out of range", "pchar stack empty",
-		NULL
-	};
-	int e = 0;
-
-	while (flags[e] != NULL)
-		if (strcmp(error, flags[e]) != 0)
-			e++;
-		else
-			break;
-	return (e);
-}
-
-/**
  * handle_errors - function to handle all errors
  *
  * Return: void
  */
-void handle_errors(char *error)
+void handle_errors(int e)
 {
-	int e;
 	unsigned int n;
 	char *errors[] = {
 		"Error: malloc failed\n", "USAGE: monty file\n",
@@ -84,10 +57,9 @@ void handle_errors(char *error)
 		"can't add, stack too short\n", "can't sub, stack too short\n",
 		"can't div, stack too short\n", "division by zero\n",
 		"can't mul, stack too short\n", "can't mod, stack too short\n",
-		"can't pchar, value out of range\n", "can't pchar, stack empty\n"
+		"can't pchar, stack empty\n", "can't pchar, value out of range\n"
 	};
 
-	e = find_error(error);
 	if (inventory)
 		n = inventory->linenum;
 
@@ -103,5 +75,6 @@ void handle_errors(char *error)
 		dprintf(STDERR_FILENO, "L%u: %s", n, errors[e]);
 
 	free_all();
+	fclose(inventory->file);
 	exit(EXIT_FAILURE);
 }

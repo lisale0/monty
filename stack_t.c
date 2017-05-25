@@ -14,7 +14,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (inventory->input[1] == NULL)
-		handle_errors("push integer");
+		handle_errors(ERROR_PUSH);
 	else
 		num = inventory->input[1];
 
@@ -22,10 +22,10 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		new_node = malloc(sizeof(stack_t));
 		if (new_node == NULL)
-			handle_errors("malloc fail");
+			handle_errors(ERROR_MALLOC);
 	}
 	else
-		handle_errors("push integer");
+		handle_errors(ERROR_PUSH);
 
 	if (new_node)
 	{
@@ -67,7 +67,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (!stack || !*stack)
-		handle_errors("can't pint");
+		handle_errors(ERROR_PINT);
 
     printf("%d\n", (*stack)->n);
 }
@@ -84,7 +84,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (*stack == NULL)
-		handle_errors("can't pop");
+		handle_errors(ERROR_POP);
 	else if ((*stack)->next != NULL)
 	{
 		next = (*stack)->next;
@@ -111,7 +111,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (!stack || !*stack || !(*stack)->next)
-		handle_errors("can't swap");
+		handle_errors(ERROR_SWAP);
 
 	temp = (*stack)->n;
 	(*stack)->n = (*stack)->next->n;
