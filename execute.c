@@ -20,8 +20,6 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 	};
 
 	input_opcode = inventory->input[0];
-	if (input_opcode[0] == '#')
-		return (_nop);
 	while ((opcode = instructions[i].opcode))
 	{
 		if (strncmp(opcode, input_opcode, strlen(input_opcode)))
@@ -45,6 +43,11 @@ int parse_line(char *line)
 	char *delim = " \t\n\r";
 
 	inventory->input[0] = strtok(line, delim);
+
+	if (inventory->input[0][0] == '#')
+		return (EXIT_FAILURE);
+
 	inventory->input[1] = strtok(NULL, delim);
+
 	return (EXIT_SUCCESS);
 }

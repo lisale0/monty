@@ -28,8 +28,9 @@ int main(int argc, char **argv)
 	}
 	while (getline(&inventory->line, &n, inventory->file) > 0)
 	{
-		parse_line(inventory->line);
 		inventory->linenum++;
+		if (parse_line(inventory->line) == EXIT_FAILURE)
+			continue;
 		execute = match_opcode();
 		execute(&inventory->stack, inventory->linenum);
 	}
