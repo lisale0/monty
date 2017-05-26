@@ -70,15 +70,15 @@ void handle_errors(int e)
 		n = inventory->linenum;
 
 	if (e <= 1)
-		printf(STDERR_FILENO, "%s", errors[e]);
+		dprintf(STDOUT_FILENO, "%s", errors[e]);
 	else if (e == 2)
-		printf(STDERR_FILENO, "Error: Can't open file %s\n",
+		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n",
 				inventory->filename);
 	else if (e == 3)
-		printf(STDERR_FILENO, "L%u: unknown instruction %s\n", n,
+		dprintf(STDOUT_FILENO, "L%u: unknown instruction %s\n", n,
 				inventory->input[0]);
 	else if (e >= 4)
-		printf(STDERR_FILENO, "L%u: %s", n, errors[e]);
+		dprintf(STDOUT_FILENO, "L%u: %s", n, errors[e]);
 
 	free_all();
 
