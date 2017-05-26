@@ -51,9 +51,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -66,12 +66,12 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
- * inventory_s - a struct pointing to all other structs for this project
+ * struct inventory_s - a struct pointing to all other structs for this project
  * @filename: the filename from argv[1]
  * @stack: pointer to stack
  * @line: input line received from getline
@@ -87,7 +87,7 @@ typedef struct inventory_s
 	char **input;
 	unsigned int linenum;
 	FILE *file;
-}inventory_t;
+} inventory_t;
 
 /* ----- glbal ----- */
 
@@ -96,7 +96,7 @@ inventory_t *inventory;
 
 /* ------Built Inventory -------*/
 
-int build_inventory();
+int build_inventory(void);
 
 /* ----- Stack ----- */
 

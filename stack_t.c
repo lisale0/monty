@@ -69,7 +69,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (!stack || !*stack)
 		handle_errors(ERROR_PINT);
 
-    printf("%d\n", (*stack)->n);
+	printf("%d\n", (*stack)->n);
 }
 
 /**

@@ -22,7 +22,7 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 	i = instructions;
 	input_opcode = inventory->input[0];
 
-	while(i->opcode && strncmp(i->opcode, input_opcode, strlen(input_opcode)))
+	while (i->opcode && strncmp(i->opcode, input_opcode, strlen(input_opcode)))
 		i++;
 
 	if (!i->f)
@@ -47,7 +47,8 @@ int parse_line(char *line)
 	s = inventory->line;
 	len = strlen(s);
 
-	for (i = 0; s[i] == delim[0] || s[i] == delim[1] || s[i] == delim[2]; i++);
+	for (i = 0; s[i] == delim[0] || s[i] == delim[1] || s[i] == delim[2]; i++)
+		;
 	if (i == len)
 		return (EXIT_FAILURE);
 

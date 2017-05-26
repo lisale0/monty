@@ -48,13 +48,14 @@ void free_all(void)
 
 /**
  * handle_errors - function to handle all errors
+ * @e: index number of error message
  *
  * Return: void
  */
 void handle_errors(int e)
 {
 	unsigned int n;
-	char *errors[] = {
+	static char *const errors[] = {
 		"Error: malloc failed\n", "USAGE: monty file\n",
 		NULL, NULL,
 		"usage: push integer\n", "can't pint, stack empty\n",

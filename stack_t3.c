@@ -41,5 +41,5 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	if ((*stack)->n < 0 || (*stack)->n > 127)
 		handle_errors(ERROR_PCHAR_RANGE);
 
-    printf("%c\n", (*stack)->n);
+	printf("%c\n", (*stack)->n);
 }

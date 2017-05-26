@@ -5,7 +5,7 @@
  *
  * Return: EXIT_SUCCESS or EXIT_FAILURE
  */
-int build_inventory()
+int build_inventory(void)
 {
 	inventory = malloc(sizeof(inventory_t));
 	if (!inventory)
