@@ -43,7 +43,7 @@ int parse_line(char *line)
 	char *delim, *s;
 	int len, i;
 
-	delim = " \n";
+	delim = "\n ";
 	s = inventory->line;
 	len = strlen(s);
 
