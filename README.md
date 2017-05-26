@@ -30,6 +30,11 @@ This project covers...
 * ### `./bytecodes`
   * contains monty, `.m` bytecode files.
 
+## Tests
+
+Testing for this program can be done with the bash testing file at the monty
+checker repository: https://github.com/johncoleman83/monty-checker
+
 ## Authors
 
 * Lisa Leung
