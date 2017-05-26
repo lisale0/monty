@@ -9,32 +9,32 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *file;
 	size_t n;
 	void (*execute)(stack_t **stack, unsigned int line_number);
 
 	inventory = NULL;
 	if (argc != 2)
-		handle_errors("usage file");
+		handle_errors(ERROR_USAGE_FILE);
 
 	build_inventory();
 	inventory->filename = argv[1];
+	inventory->file = fopen(inventory->filename, "r");
 
-	file = fopen(inventory->filename, "r");
-	if (file == NULL)
-		handle_errors("can't open file");
-
-	while (getline(&inventory->line, &n, file) > 0)
+	if (inventory->file == NULL)
 	{
-		parse_line(inventory->line);
+		free_all();
+		handle_errors(ERROR_OPEN_FILE);
+		return (EXIT_FAILURE);
+	}
+	while (getline(&inventory->line, &n, inventory->file) > 0)
+	{
 		inventory->linenum++;
+		if (parse_line(inventory->line) == EXIT_FAILURE)
+			continue;
 		execute = match_opcode();
-		if (execute == NULL)
-			handle_errors("unknown instruction");
-
 		execute(&inventory->stack, inventory->linenum);
 	}
-	fclose(file);
+	fclose(inventory->file);
 	free_all();
 	return (EXIT_SUCCESS);
 }

@@ -19,6 +19,25 @@
 #define FALSE (!TRUE)
 #define BUFSIZE 1024
 
+/* ----- ERRORS ----- */
+
+#define ERROR_MALLOC 0
+#define ERROR_USAGE_FILE 1
+#define ERROR_OPEN_FILE 2
+#define ERROR_UNKNOWN 3
+#define ERROR_PUSH 4
+#define ERROR_PINT 5
+#define ERROR_POP 6
+#define ERROR_SWAP 7
+#define ERROR_ADD 8
+#define ERROR_SUB 9
+#define ERROR_DIV 10
+#define ERROR_DIV_ZERO 11
+#define ERROR_MUL 12
+#define ERROR_MOD 13
+#define ERROR_STACK_EMPTY 14
+#define ERROR_PCHAR_RANGE 15
+
 /* ----- Structs ----- */
 
 /**
@@ -58,6 +77,7 @@ typedef struct instruction_s
  * @line: input line received from getline
  * @input: lines of the files parsed into separate elements
  * @linenum: the linenumber
+ * @file: the input file
  */
 typedef struct inventory_s
 {
@@ -66,7 +86,10 @@ typedef struct inventory_s
 	char *line;
 	char **input;
 	unsigned int linenum;
+	FILE *file;
 }inventory_t;
+
+/* ----- glbal ----- */
 
 extern inventory_t *inventory;
 inventory_t *inventory;
@@ -116,7 +139,6 @@ int parse_line(char *line);
 
 void free_all(void);
 void free_stack(void);
-int find_error(char *error);
-void handle_errors(char *error);
+void handle_errors(int e);
 
 #endif

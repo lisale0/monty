@@ -8,14 +8,19 @@
 int build_inventory()
 {
 	inventory = malloc(sizeof(inventory_t));
+	if (!inventory)
+		handle_errors(ERROR_MALLOC);
+
 	inventory->input = malloc(sizeof(char *) * 3);
+	if (!inventory->input)
+	{
+		free(inventory);
+		handle_errors(ERROR_MALLOC);
+	}
+
 	inventory->stack = NULL;
-
-	if (!inventory || !inventory->input)
-		handle_errors("malloc fail");
-
-	inventory->linenum = 0;
 	inventory->line = NULL;
+	inventory->linenum = 0;
 
 	return (EXIT_SUCCESS);
 }

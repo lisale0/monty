@@ -8,9 +8,9 @@
 
 void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 {
-	int i = 0;
-	char *input_opcode, *opcode;
-	instruction_t instructions[] = {
+	char *input_opcode;
+	instruction_t *i;
+	static instruction_t instructions[] = {
 		{"push", _push}, {"pall", _pall},
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop}, {"sub", _sub},
@@ -19,17 +19,16 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 		{NULL, NULL}
 	};
 
+	i = instructions;
 	input_opcode = inventory->input[0];
-	if (input_opcode[0] == '#')
-		return (_nop);
-	while ((opcode = instructions[i].opcode))
-	{
-		if (strncmp(opcode, input_opcode, strlen(input_opcode)))
-			i++;
-		else
-			return (instructions[i].f);
-	}
-	return (NULL);
+
+	while(i->opcode && strncmp(i->opcode, input_opcode, strlen(input_opcode)))
+		i++;
+
+	if (!i->f)
+		handle_errors(ERROR_UNKNOWN);
+
+	return (i->f);
 }
 
 /**
@@ -44,6 +43,11 @@ int parse_line(char *line)
 	char *delim = " \t\n\r";
 
 	inventory->input[0] = strtok(line, delim);
+
+	if (inventory->input[0][0] == '#')
+		return (EXIT_FAILURE);
+
 	inventory->input[1] = strtok(NULL, delim);
+
 	return (EXIT_SUCCESS);
 }
