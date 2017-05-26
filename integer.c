@@ -11,6 +11,8 @@ int are_digits(char *num)
 	int i;
 
 	for (i = 0; num[i] != '\0'; i++)
+		if (num[i] == '-' && i == 0)
+			i++;
 		if (isdigit(num[i]) == FALSE)
 			return (FALSE);
 
