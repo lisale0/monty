@@ -32,10 +32,15 @@ void free_all(void)
 {
 	if (inventory != NULL)
 	{
+		if (inventory->file != NULL)
+			fclose(inventory->file);
+
 		if (inventory->line != NULL)
 			free(inventory->line);
+
 		if (inventory->input != NULL)
 			free(inventory->input);
+
 		free_stack();
 		free(inventory);
 	}
@@ -74,11 +79,7 @@ void handle_errors(int e)
 	else if (e >= 4)
 		dprintf(STDERR_FILENO, "L%u: %s", n, errors[e]);
 
-	if (inventory)
-	{
-		free_all();
-		if (inventory->file)
-			fclose(inventory->file);
-	}
+	free_all();
+
 	exit(EXIT_FAILURE);
 }
