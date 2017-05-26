@@ -43,11 +43,11 @@ int parse_line(char *line)
 	char *delim, *s;
 	int len, i;
 
-	delim = " \t\n";
+	delim = " \n";
 	s = inventory->line;
 	len = strlen(s);
 
-	for (i = 0; s[i] == delim[0] || s[i] == delim[1] || s[i] == delim[2]; i++)
+	for (i = 0; s[i] == delim[0] || s[i] == delim[1]; i++)
 		;
 	if (i == len)
 		return (EXIT_FAILURE);
