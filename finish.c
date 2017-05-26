@@ -74,7 +74,11 @@ void handle_errors(int e)
 	else if (e >= 4)
 		dprintf(STDERR_FILENO, "L%u: %s", n, errors[e]);
 
-	free_all();
-	fclose(inventory->file);
+	if (inventory)
+	{
+		free_all();
+		if (inventory->file)
+			fclose(inventory->file);
+	}
 	exit(EXIT_FAILURE);
 }
