@@ -21,16 +21,15 @@ int main(int argc, char **argv)
 	inventory->file = fopen(inventory->filename, "r");
 
 	if (inventory->file == NULL)
-	{
-		free_all();
 		handle_errors(ERROR_OPEN_FILE);
-		return (EXIT_FAILURE);
-	}
+
 	while (getline(&inventory->line, &n, inventory->file) > 0)
 	{
 		inventory->linenum++;
+
 		if (parse_line(inventory->line) == EXIT_FAILURE)
 			continue;
+
 		execute = match_opcode();
 		execute(&inventory->stack, inventory->linenum);
 	}

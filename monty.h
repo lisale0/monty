@@ -125,11 +125,6 @@ char *itos(char str[], long int n);
 int num_len(int num);
 int are_digits(char *num);
 
-/* ----- Mem Alloc ----- */
-
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void *_calloc(unsigned int nmemb, unsigned int size);
-
 /* ----- Execute ------ */
 
 void (*match_opcode(void))(stack_t **stack, unsigned int line_number);

@@ -40,7 +40,16 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 
 int parse_line(char *line)
 {
-	char *delim = " \t\n\r";
+	char *delim, *s;
+	int len, i;
+
+	delim = " \t\n";
+	s = inventory->line;
+	len = strlen(s);
+
+	for (i = 0; s[i] == delim[0] || s[i] == delim[1] || s[i] == delim[2]; i++);
+	if (i == len)
+		return (EXIT_FAILURE);
 
 	inventory->input[0] = strtok(line, delim);
 
