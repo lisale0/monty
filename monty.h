@@ -121,8 +121,6 @@ void _pchar(stack_t **stack, unsigned int line_number);
 
 /* --------- Integer ----------*/
 
-char *itos(char str[], long int n);
-int num_len(int num);
 int are_digits(char *num);
 
 /* ----- Execute ------ */
