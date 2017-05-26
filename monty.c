@@ -33,7 +33,6 @@ int main(int argc, char **argv)
 		execute = match_opcode();
 		execute(&inventory->stack, inventory->linenum);
 	}
-	fclose(inventory->file);
 	free_all();
 	return (EXIT_SUCCESS);
 }
