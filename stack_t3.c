@@ -64,3 +64,24 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	}
 	putchar('\n');
 }
+
+/**
+ * _rotl - rotates the stack top to bottom
+ * @stack: the stack
+ * @line_number: the line number
+ * Return: none
+ */
+void _rotl(stack_t **stack, unsigned int line_number)
+{
+	int temp;
+	(void)line_number;
+	stack_t *copy;
+
+	if
+	for (copy = *(stack); copy; copy = copy->next)
+		
+
+	temp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = temp;
+}
