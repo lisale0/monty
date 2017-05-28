@@ -83,8 +83,8 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	{
 		end = (*stack)->n;
 
-		for (copy = (*stack); copy->next; copy = copy->next)
-				copy->n = copy->next->n;
+		for (copy = *stack; copy->next; copy = copy->next)
+			copy->n = copy->next->n;
 		copy->n = end;
 	}
 }
