@@ -54,6 +54,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 void _pstr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *copy;
+
 	(void)line_number;
 
 	for (copy = *stack; copy; copy = copy->next)
@@ -73,15 +74,17 @@ void _pstr(stack_t **stack, unsigned int line_number)
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-	int temp;
-	(void)line_number;
+	int end;
 	stack_t *copy;
 
-	if
-	for (copy = *(stack); copy; copy = copy->next)
-		
+	(void)line_number;
 
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = temp;
+	if (stack && *stack)
+	{
+		end = (*stack)->n;
+
+		for (copy = (*stack); copy->next; copy = copy->next)
+				copy->n = copy->next->n;
+		copy->n = end;
+	}
 }
