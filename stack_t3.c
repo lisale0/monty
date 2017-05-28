@@ -43,3 +43,24 @@ void _pchar(stack_t **stack, unsigned int line_number)
 
 	printf("%c\n", (*stack)->n);
 }
+
+/**
+ * _pstr - prints the char type of the head node integer
+ * @stack: the stack
+ * @line_number: line number
+ *
+ * Return: None
+ */
+void _pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *copy;
+	(void)line_number;
+
+	for (copy = *stack; copy; copy = copy->next)
+	{
+		if (copy->n < 1 || copy->n > 127)
+			break;
+		printf("%c", copy->n);
+	}
+	putchar('\n');
+}

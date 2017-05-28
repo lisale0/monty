@@ -15,7 +15,7 @@ void (*match_opcode(void))(stack_t **stack, unsigned int line_number)
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop}, {"sub", _sub},
 		{"div", _div}, {"mul", _mul}, {"mod", _mod},
-		{"pchar", _pchar},
+		{"pchar", _pchar}, {"pstr", _pstr},
 		{NULL, NULL}
 	};
 

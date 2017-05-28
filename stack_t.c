@@ -45,15 +45,11 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *copy = *stack;
-	size_t i;
+	stack_t *copy;
 	(void)line_number;
 
-	for (i = 0; copy; i++, copy = copy->next)
-	{
-		if (copy != NULL)
-			printf("%d\n", copy->n);
-	}
+	for (copy = *stack; copy; copy = copy->next)
+		printf("%d\n", copy->n);
 }
 
 /**
