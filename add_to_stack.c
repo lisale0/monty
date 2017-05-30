@@ -3,7 +3,7 @@
 /**
  * add_node_lifo - adds a new node at the beginning of a stack_t list
  * @stack: head of stack (linked list)
- * @line_number: line number
+ * @new_node: the node to add
  *
  * Return: void
  */
@@ -19,7 +19,7 @@ void add_node_lifo(stack_t **stack, stack_t *new_node)
 /**
  * add_node_fifo - adds a new node at the end of a stack_t list
  * @stack: head of stack (linked list)
- * @line_number: line number
+ * @new_node: the node to add
  *
  * Return: void
  */
