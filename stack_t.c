@@ -1,44 +1,6 @@
 # include "monty.h"
 
 /**
- * _push - adds a new node at the beginning of a stack_t list
- * @stack: head of stack (linked list)
- * @line_number: line number
- *
- * Return: void
- */
-void _push(stack_t **stack, unsigned int line_number)
-{
-	stack_t *new_node = NULL;
-	char *num;
-	(void)line_number;
-
-	if (inventory->input[1] == NULL)
-		handle_errors(ERROR_PUSH);
-	else
-		num = inventory->input[1];
-
-	if (are_digits(num) == TRUE)
-	{
-		new_node = malloc(sizeof(stack_t));
-		if (new_node == NULL)
-			handle_errors(ERROR_MALLOC);
-	}
-	else
-		handle_errors(ERROR_PUSH);
-
-	if (new_node)
-	{
-		new_node->n = atoi(num);
-		new_node->prev = NULL;
-		new_node->next = *stack;
-		if (*stack)
-			(*stack)->prev = new_node;
-		*stack = new_node;
-	}
-}
-
-/**
  * _pall - prints all the elements from the stack
  * @stack: head of stack
  * @line_number: line number
@@ -50,20 +12,8 @@ void _pall(stack_t **stack, unsigned int line_number)
 	stack_t *copy;
 	(void)line_number;
 
-	if (inventory->order == LIFO)
-		for (copy = *stack; copy; copy = copy->next)
-			printf("%d\n", copy->n);
-	else
-	{
-		copy = *stack;
-		while (copy->next)
-			copy = copy->next;
-		while (copy)
-		{
-			printf("%d\n", copy->n);
-			copy = copy->prev;
-		}
-	}
+	for (copy = *stack; copy; copy = copy->next)
+		printf("%d\n", copy->n);
 }
 
 /**
