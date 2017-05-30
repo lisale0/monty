@@ -21,6 +21,7 @@ int build_inventory(void)
 	inventory->stack = NULL;
 	inventory->line = NULL;
 	inventory->linenum = 0;
+	inventory->order = LIFO;
 
 	return (EXIT_SUCCESS);
 }
