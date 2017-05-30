@@ -18,6 +18,8 @@
 #define TRUE (1 == 1)
 #define FALSE (!TRUE)
 #define BUFSIZE 1024
+#define LIFO 1
+#define FIFO 0
 
 /* ----- ERRORS ----- */
 
@@ -78,6 +80,7 @@ typedef struct instruction_s
  * @input: lines of the files parsed into separate elements
  * @linenum: the linenumber
  * @file: the input file
+ * @order: LIFO or FIFO, stack or queue
  */
 typedef struct inventory_s
 {
@@ -87,6 +90,7 @@ typedef struct inventory_s
 	char **input;
 	unsigned int linenum;
 	FILE *file;
+	int order;
 } inventory_t;
 
 /* ----- glbal ----- */
@@ -121,6 +125,11 @@ void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
+
+/* ---- Stack 4 ---- */
+
+void _stack(stack_t **stack, unsigned int line_number);
+void _queue(stack_t **stack, unsigned int line_number);
 
 /* --------- Integer ----------*/
 

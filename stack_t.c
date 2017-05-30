@@ -32,6 +32,8 @@ void _push(stack_t **stack, unsigned int line_number)
 		new_node->n = atoi(num);
 		new_node->prev = NULL;
 		new_node->next = *stack;
+		if (*stack)
+			(*stack)->prev = new_node;
 		*stack = new_node;
 	}
 }
@@ -48,8 +50,20 @@ void _pall(stack_t **stack, unsigned int line_number)
 	stack_t *copy;
 	(void)line_number;
 
-	for (copy = *stack; copy; copy = copy->next)
-		printf("%d\n", copy->n);
+	if (inventory->order == LIFO)
+		for (copy = *stack; copy; copy = copy->next)
+			printf("%d\n", copy->n);
+	else
+	{
+		copy = *stack;
+		while (copy->next)
+			copy = copy->next;
+		while (copy)
+		{
+			printf("%d\n", copy->n);
+			copy = copy->prev;
+		}
+	}
 }
 
 /**
