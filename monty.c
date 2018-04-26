@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	inventory = NULL;
 	if (argc != 2)
 		handle_errors(ERROR_USAGE_FILE);
-
+	/*builds global struct of most used variables*/
 	build_inventory();
 	inventory->filename = argv[1];
 	inventory->file = fopen(inventory->filename, "r");
