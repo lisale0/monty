@@ -15,21 +15,22 @@ int main(int argc, char **argv)
 	inventory = NULL;
 	if (argc != 2)
 		handle_errors(ERROR_USAGE_FILE);
-	/*builds global struct of most used variables*/
+	/*Builds the global struct of most used variables*/
 	build_inventory();
+	/*Get file name*/
 	inventory->filename = argv[1];
+	/*Open file*/
 	inventory->file = fopen(inventory->filename, "r");
-
 	if (inventory->file == NULL)
 		handle_errors(ERROR_OPEN_FILE);
-
+	/*Read each line or opscode in the file*/
 	while (getline(&inventory->line, &n, inventory->file) > 0)
 	{
 		inventory->linenum++;
-
+		/*Parse the line, if it fails, go to the next time in the file*/
 		if (parse_line(inventory->line) == EXIT_FAILURE)
 			continue;
-
+		/*Find the right instruction*/
 		execute = match_opcode();
 		execute(&inventory->stack, inventory->linenum);
 	}
